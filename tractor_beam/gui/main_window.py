@@ -192,7 +192,7 @@ class TractorBeamGUI:
         
         if file_path:
             try:
-                with open(file_path, 'r') as f:
+                with open(file_path, 'r', encoding='utf-8') as f:
                     self.current_config = json.load(f)
                 self.config_file_path = file_path
                 self.config_file_label.config(text=Path(file_path).name, foreground="green")
