@@ -2,18 +2,27 @@ from bs4 import BeautifulSoup
 import chardet
 from tractor_beam.utils.globals import _f
 
-from marker.convert import convert_single_pdf
-from marker.models import load_all_models
-from marker import output
+try:
+    from marker.convert import convert_single_pdf
+    from marker.models import load_all_models
+    from marker import output
+    MARKER_AVAILABLE = True
+except ImportError:
+    MARKER_AVAILABLE = False
 
 class PDFProcessor:
     def __init__(self):
-        pass
+        if not MARKER_AVAILABLE:
+            _f("warn", "Marker PDF converter not available - PDF processing will be limited")
     
     def load_models(self):
+        if not MARKER_AVAILABLE:
+            raise ImportError("Marker PDF converter not available")
         return load_all_models()
 
     async def export_to_markdown(self, filepath, _dir, output_filepath, model_lst):
+        if not MARKER_AVAILABLE:
+            raise ImportError("Marker PDF converter not available")
         try:
             full_text, doc_images, out_meta = convert_single_pdf(filepath, model_lst=model_lst)
             result = output.save_markdown(_dir, output_filepath.split('/')[-1], full_text, doc_images, out_meta)

@@ -11,3 +11,4 @@ marker-pdf
 python-docx
 youtube-transcript-api
 llm-magnet
+psutil

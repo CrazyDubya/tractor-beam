@@ -1,0 +1,24 @@
+{
+    "role": "watcher",
+    "settings": {
+        "name": "periodic_monitor",
+        "proj_dir": "./monitor_output",
+        "jobs": [
+            {
+                "url": "https://httpbin.org/delay/1",
+                "types": ["json"],
+                "beacon": null,
+                "delay": 30,
+                "tasks": ["abduct", "visits"],
+                "custom": [
+                    {
+                        "func": "timestamp_tracker",
+                        "headers": {
+                            "User-Agent": "TractorBeam-Monitor/1.0"
+                        }
+                    }
+                ]
+            }
+        ]
+    }
+}

@@ -1,0 +1,30 @@
+{
+    "role": "server",
+    "settings": {
+        "name": "multi_job_demo",
+        "proj_dir": "./multi_job_output",
+        "jobs": [
+            {
+                "url": "https://httpbin.org/html",
+                "types": ["html"],
+                "beacon": null,
+                "delay": null,
+                "tasks": ["abduct", "visits", "process"]
+            },
+            {
+                "url": "https://httpbin.org/json",
+                "types": ["json"],
+                "beacon": null,
+                "delay": null,
+                "tasks": ["abduct", "visits"]
+            },
+            {
+                "url": "https://httpbin.org/xml",
+                "types": ["xml"],
+                "beacon": null,
+                "delay": null,
+                "tasks": ["abduct", "visits", "process"]
+            }
+        ]
+    }
+}
