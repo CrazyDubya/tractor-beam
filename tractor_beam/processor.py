@@ -6,7 +6,12 @@ from tractor_beam.utils.file_handlers import PDFProcessor
 from tractor_beam.visits.visit import VisitState
 from tractor_beam.utils.config import Job
 
-from marker.models import load_all_models
+try:
+    from marker.models import load_all_models
+    MARKER_AVAILABLE = True
+except ImportError:
+    MARKER_AVAILABLE = False
+    
 from dataclasses import dataclass, field
 from typing import List, Dict, Optional
 
@@ -26,7 +31,11 @@ class VisitsProcessor:
             return _f('warn', f'no configuration loaded\n{e}')
 
     async def process_visits(self):
-        model_lst = load_all_models()
+        if MARKER_AVAILABLE:
+            model_lst = load_all_models()
+        else:
+            model_lst = None
+            _f('warn', 'Marker not available - PDF processing will be skipped')
         visits_file_path = os.path.join(self.state.conf.settings.proj_dir, self.state.conf.settings.name, 'visit.csv')
         field_names = []
         processed_files = set()

@@ -5,6 +5,7 @@
    <h3 align="center">tractor-beam</h3>
    <p align="center">high-efficiency text & file scraper with smart tracking</p>
    <p align="center"><i>~ client/server networking for building language model datasets <b>fast</b> ~</i></p>
+   <p align="center"><b>🆕 Now with GUI Interface!</b></p>
 </p>
 
 </center>
@@ -21,9 +22,77 @@ or
 python3 setup.py install
 ```
 
-## 🛸 Tutorial
+## 🚀 Quick Start
 
-[examples](https://github.com/Prismadic/tractor-beam/blob/main/examples/examples.ipynb)
+### Using the GUI (New!)
+
+Launch the graphical interface for easy configuration and monitoring:
+
+```bash
+# Launch GUI directly
+python examples/gui_demo.py
+
+# Or use the CLI
+python -m tractor_beam.cli gui
+```
+
+### Using the Command Line
+
+```bash
+# Run a configuration file
+python -m tractor_beam.cli run config.json
+
+# Validate a configuration
+python -m tractor_beam.cli validate config.json
+
+# Copy example configurations
+python -m tractor_beam.cli examples --copy simple
+
+# Show version and features
+python -m tractor_beam.cli version
+```
+
+### Programmatic Usage
+
+```python
+from tractor_beam import Beam
+
+# Load and run configuration
+beam = Beam('config.json')
+await beam.go()
+```
+
+## 🖥️ GUI Features
+
+The new graphical interface provides:
+
+- **Visual Configuration Management**: Create, edit, and save configurations with forms
+- **Job Management**: Add, edit, and remove scraping jobs visually
+- **Real-time Monitoring**: Watch progress with live logs and progress bars
+- **File Browser**: Browse and preview downloaded files and results
+- **Built-in Tutorial**: Interactive help and examples
+- **Example Configurations**: Load and modify pre-built configurations
+
+### GUI Quick Start
+
+1. **Launch**: Run `python examples/gui_demo.py`
+2. **Create Project**: Click "New Config" to start fresh
+3. **Add Job**: Click "Add Job" and fill in the URL and settings
+4. **Run**: Click "Run Jobs" and monitor progress
+5. **View Results**: Check the "Files & Results" tab for output
+
+## 🛸 Tutorial & Examples
+
+### Complete Tutorial
+- **GUI Quick Start**: `examples/tutorial/gui_quickstart.md`
+- **Complete Tutorial**: `examples/tutorial/complete_tutorial.md`
+- **Interactive Notebook**: `examples/comprehensive_tutorial.ipynb`
+
+### Example Configurations
+- **Simple Demo**: `examples/configs/gui_demo_simple.json`
+- **Multi-job Demo**: `examples/configs/gui_demo_multi.json`
+- **Monitoring Demo**: `examples/configs/gui_demo_watcher.json`
+- **Original Examples**: `examples/configs/example*.json`
 
 ## 🌈 `tractor.Beam()`
 

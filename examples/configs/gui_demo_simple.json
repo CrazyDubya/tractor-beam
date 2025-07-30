@@ -1,0 +1,16 @@
+{
+    "role": "server",
+    "settings": {
+        "name": "gui_demo_simple",
+        "proj_dir": "./gui_demo_output",
+        "jobs": [
+            {
+                "url": "https://httpbin.org/",
+                "types": ["html", "json"],
+                "beacon": null,
+                "delay": null,
+                "tasks": ["abduct", "visits"]
+            }
+        ]
+    }
+}
