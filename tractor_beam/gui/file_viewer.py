@@ -208,6 +208,10 @@ class FileViewer:
         """Get the full path for a tree item"""
         # This is a simplified version - in a real implementation,
         # you'd need to track the full paths properly
+        # Retrieve the full path from the item's metadata
+        item_values = self.file_tree.item(item, "values")
+        if item_values and len(item_values) > 2:
+            return item_values[2]  # The full path is stored as the third value
         return None
         
     def load_file_content(self, file_path):
