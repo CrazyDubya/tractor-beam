@@ -161,8 +161,8 @@ def handle_examples(copy_to=None):
     """Handle examples command"""
     try:
         # Find examples directory
-        from tractor_beam import __file__ as tb_file
-        examples_dir = Path(tb_file).parent.parent / "examples" / "configs"
+        import importlib.resources
+        examples_dir = importlib.resources.files("tractor_beam") / "examples" / "configs"
         
         if not examples_dir.exists():
             print("Examples directory not found")
