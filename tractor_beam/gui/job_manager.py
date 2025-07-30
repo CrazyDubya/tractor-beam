@@ -293,7 +293,6 @@ class JobManager:
                 
                 if custom_headers:
                     try:
-                        import json
                         headers = json.loads(custom_headers)
                         custom_obj["headers"] = headers
                     except json.JSONDecodeError:
