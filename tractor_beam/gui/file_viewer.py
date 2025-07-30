@@ -294,26 +294,42 @@ class FileViewer:
         """Open the selected file in the content viewer"""
         selection = self.file_tree.selection()
         if selection:
-            # Implementation would depend on how paths are tracked
-            pass
+            file_path = self._get_item_path(selection[0])
+            if file_path and os.path.isfile(file_path):
+                self.load_file_content(file_path)
+            else:
+                messagebox.showerror("Error", "Selected item is not a valid file.")
             
     def open_in_system(self):
         """Open file with system default application"""
         selection = self.file_tree.selection()
         if selection:
-            # Implementation would depend on how paths are tracked
-            pass
+            file_path = self._get_item_path(selection[0])
+            if file_path and os.path.isfile(file_path):
+                os.startfile(file_path)  # Windows-specific; use `subprocess` for cross-platform
+            else:
+                messagebox.showerror("Error", "Selected item is not a valid file.")
             
     def copy_path(self):
         """Copy file path to clipboard"""
         selection = self.file_tree.selection()
         if selection:
-            # Implementation would depend on how paths are tracked
-            pass
+            file_path = self._get_item_path(selection[0])
+            if file_path:
+                self.parent.clipboard_clear()
+                self.parent.clipboard_append(file_path)
+                self.parent.update()  # Keep clipboard content after the app closes
+                messagebox.showinfo("Info", "File path copied to clipboard.")
+            else:
+                messagebox.showerror("Error", "Failed to copy file path.")
             
     def show_in_explorer(self):
         """Show file in system file manager"""
         selection = self.file_tree.selection()
         if selection:
-            # Implementation would depend on how paths are tracked
-            pass
+            file_path = self._get_item_path(selection[0])
+            if file_path and os.path.exists(file_path):
+                folder_path = os.path.dirname(file_path)
+                os.startfile(folder_path)  # Windows-specific; use `subprocess` for cross-platform
+            else:
+                messagebox.showerror("Error", "Failed to locate file.")
